@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Interface;
+﻿using AutoMapper;
+using BusinessLayer.Interface;
 using ModelLayer;
 using ModelLayer.DTO;
 using RepositoryLayer.Interface;
@@ -8,36 +9,40 @@ namespace BusinessLayer.Service
 {
     public class AddressBookBL : IAddressBookBL
     {
-        private readonly IAddressBookRL _addressBookRL;
+        private readonly IAddressBookRL _repository;
+        private readonly IMapper _mapper;
 
-        public AddressBookBL(IAddressBookRL addressBookRL)
+        public AddressBookBL(IAddressBookRL repository, IMapper mapper)
         {
-            _addressBookRL = addressBookRL;
+            _repository = repository;
+            _mapper = mapper;
         }
 
         public List<AddressBook> GetAllContacts()
         {
-            return _addressBookRL.GetAllContacts();
+            return _repository.GetAllContacts();
         }
 
         public AddressBook GetContactById(int id)
         {
-            return _addressBookRL.GetContactById(id);
+            return _repository.GetContactById(id);
         }
 
-        public AddressBook AddContact(AddressBook contact)
+        public AddressBook AddContact(AddressBookDTO contactDTO)
         {
-            return _addressBookRL.AddContact(contact);
+            var contact = _mapper.Map<AddressBook>(contactDTO);
+            return _repository.AddContact(contact);
         }
 
-        public AddressBook UpdateContact(int id, AddressBook contact)
+        public AddressBook UpdateContact(int id, AddressBookDTO contactDTO)
         {
-            return _addressBookRL.UpdateContact(id, contact);
+            var updatedContact = _mapper.Map<AddressBook>(contactDTO);
+            return _repository.UpdateContact(id, updatedContact);
         }
 
         public bool DeleteContact(int id)
         {
-            return _addressBookRL.DeleteContact(id);
+            return _repository.DeleteContact(id);
         }
     }
 }

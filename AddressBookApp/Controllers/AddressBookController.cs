@@ -1,7 +1,9 @@
 using BusinessLayer.Interface;
-using Microsoft.AspNetCore.Mvc;
-using ModelLayer;
+using FluentValidation;
+using FluentValidation.Results;
 using ModelLayer.DTO;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace AddressBookApp.Controllers
 {
@@ -10,61 +12,66 @@ namespace AddressBookApp.Controllers
     public class AddressBookController : ControllerBase
     {
         private readonly IAddressBookBL _addressBookBL;
+        private readonly IValidator<AddressBookDTO> _validator;
 
-        public AddressBookController(IAddressBookBL addressBookBL)
+        public AddressBookController(IAddressBookBL addressBookBL, IValidator<AddressBookDTO> validator)
         {
             _addressBookBL = addressBookBL;
+            _validator = validator;
         }
 
-        
         [HttpGet]
-        public IActionResult GetAllContacts()
+        public ActionResult<List<AddressBookDTO>> GetAllContacts()
         {
             var contacts = _addressBookBL.GetAllContacts();
             return Ok(contacts);
         }
 
-        
         [HttpGet("{id}")]
-        public IActionResult GetContactById(int id)
+        public ActionResult<AddressBookDTO> GetContactById(int id)
         {
             var contact = _addressBookBL.GetContactById(id);
             if (contact == null)
-            {
                 return NotFound();
-            }
             return Ok(contact);
         }
 
-        
         [HttpPost]
-        public IActionResult AddContact([FromBody] AddressBook contact)
+        public ActionResult<AddressBookDTO> AddContact([FromBody] AddressBookDTO contactDTO)
         {
-            var newContact = _addressBookBL.AddContact(contact);
-            return CreatedAtAction(nameof(GetContactById), new { id = newContact.Id }, newContact);
+            // Validate DTO
+            ValidationResult result = _validator.Validate(contactDTO);
+            if (!result.IsValid)
+            {
+                return BadRequest(result.Errors);
+            }
+
+            var contact = _addressBookBL.AddContact(contactDTO);
+            return CreatedAtAction(nameof(GetContactById), new { id = contact.Id }, contact);
         }
 
-        
         [HttpPut("{id}")]
-        public IActionResult UpdateContact(int id, [FromBody] AddressBook contact)
+        public IActionResult UpdateContact(int id, [FromBody] AddressBookDTO contactDTO)
         {
-            var updatedContact = _addressBookBL.UpdateContact(id, contact);
-            if (updatedContact == null)
+            // Validate DTO
+            ValidationResult result = _validator.Validate(contactDTO);
+            if (!result.IsValid)
             {
-                return NotFound();
+                return BadRequest(result.Errors);
             }
+
+            var updatedContact = _addressBookBL.UpdateContact(id, contactDTO);
+            if (updatedContact == null)
+                return NotFound();
             return Ok(updatedContact);
         }
 
-        
         [HttpDelete("{id}")]
         public IActionResult DeleteContact(int id)
         {
-            bool isDeleted = _addressBookBL.DeleteContact(id);
-            if (!isDeleted)
-            {
+            var deleted = _addressBookBL.DeleteContact(id);
+            if (!deleted)
                 return NotFound();
-            }
             return NoContent();
         }
     }

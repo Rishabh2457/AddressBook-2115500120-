@@ -8,8 +8,8 @@ namespace BusinessLayer.Interface
     {
         List<AddressBook> GetAllContacts();
         AddressBook GetContactById(int id);
-        AddressBook AddContact(AddressBook contact);
-        AddressBook UpdateContact(int id, AddressBook contact);
+        AddressBook AddContact(AddressBookDTO contact);
+        AddressBook UpdateContact(int id, AddressBookDTO contact);
         bool DeleteContact(int id);
     }
 }
