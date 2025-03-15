@@ -1,15 +1,14 @@
-﻿using ModelLayer;
-using ModelLayer.DTO;
-using System.Collections.Generic;
-
+﻿using System;
+using ModelLayer.Model;
 namespace RepositoryLayer.Interface
 {
     public interface IAddressBookRL
     {
-        List<AddressBook> GetAllContacts();
-        AddressBook GetContactById(int id);
-        AddressBook AddContact(AddressBook contact);
-        AddressBook UpdateContact(int id, AddressBook contact);
-        bool DeleteContact(int id);
+        AddressBook? GetById(int id);
+        public List<AddressBook> GetAll();
+        bool AddEntry(AddressBook entry);
+        bool UpdateEntry(int id, AddressBook updatedentry);
+        bool DeleteEntry(int id);
+
     }
 }

@@ -20,13 +20,10 @@ namespace RepositoryLayer.Service
             var smtpPort = int.Parse(_configuration["EmailSettings:SmtpPort"]);
             var senderEmail = _configuration["EmailSettings:SenderEmail"];
             var senderPassword = _configuration["EmailSettings:SenderPassword"];
-
             using (var smtpClient = new SmtpClient(smtpServer, smtpPort))
             {
                 smtpClient.Credentials = new NetworkCredential(senderEmail, senderPassword);
                 smtpClient.EnableSsl = true;
-                smtpClient.UseDefaultCredentials = false; 
-
                 var mailMessage = new MailMessage
                 {
                     From = new MailAddress(senderEmail),
@@ -37,9 +34,7 @@ namespace RepositoryLayer.Service
                 mailMessage.To.Add(toEmail);
                 smtpClient.Send(mailMessage);
             }
+
         }
-
-
     }
 }
-

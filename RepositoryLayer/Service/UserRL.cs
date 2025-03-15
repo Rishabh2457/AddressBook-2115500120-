@@ -11,7 +11,6 @@ using RepositoryLayer.Hashing;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Extensions.Configuration;
-using Microsoft.EntityFrameworkCore;
 
 namespace RepositoryLayer.Service
 {
@@ -68,7 +67,7 @@ namespace RepositoryLayer.Service
                     FirstName = validUser.FirstName,
                     LastName = validUser.LastName,
                     Email = validUser.Email,
-                    UserRole = validUser.UserRole,
+                    UserRole = (ModelLayer.DTO.Role)validUser.UserRole,
                     Token = GenerateJwtToken(validUser)
 
                 };
@@ -76,7 +75,6 @@ namespace RepositoryLayer.Service
             }
             return null;
         }
-
         /// <summary>
         /// method to generate the jwt token
         /// </summary>
@@ -89,7 +87,7 @@ namespace RepositoryLayer.Service
             var claims = new[]
             {
                 new Claim(ClaimTypes.Name, user.Email),
-                new Claim("Id", user.Id.ToString()),
+                new Claim("UserId", user.Id.ToString()),
                 new Claim(ClaimTypes.Role, user.UserRole.ToString())
             };
 
@@ -103,11 +101,6 @@ namespace RepositoryLayer.Service
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-        public List<User> GetAllUsers()
-        {
-            return _context.Users.ToList();
-        }
-
         /// <summary>
         /// method to get the temperory token to verify the user while reseting the password
         /// </summary>
@@ -155,6 +148,10 @@ namespace RepositoryLayer.Service
             user.ResetTokenExpiry = null;
             _context.SaveChanges();
             return true;
+        }
+        public List<User> GetAll()
+        {
+            return _context.Users.ToList();
         }
 
     }

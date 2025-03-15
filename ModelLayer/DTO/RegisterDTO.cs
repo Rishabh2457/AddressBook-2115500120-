@@ -11,5 +11,6 @@ namespace ModelLayer.Model
         public string Password { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public Role UserRole { get; set; }
+        public string Name => $"{FirstName} {LastName}";
     }
 }

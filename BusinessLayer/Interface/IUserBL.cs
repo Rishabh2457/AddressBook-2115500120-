@@ -9,7 +9,6 @@ namespace BusinessLayer.Interface
         UserResponseDTO LoginUser(LoginDTO loginDTO);
         bool ForgetPassword(string email);
         bool ResetPassword(string token, string newPassword);
-
-        List<UserResponseDTO> GetAllUsers();
+        List<RegisterDTO> GetAllUsers();
     }
 }

@@ -1,30 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
-namespace ModelLayer.DTO
+public class AddressBook
 {
-    public class AddressBook
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [JsonPropertyName("id")]
+    public int Id { get; set; }
 
-        [Required]
-        public string Name { get; set; }
+    [Required]
+    [JsonPropertyName("name")]
+    public string Name { get; set; }
 
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+    [Required]
+    [EmailAddress]
+    [JsonPropertyName("email")]
+    public string Email { get; set; }
 
-        [Required]
-        [Phone]
-        public string Phone { get; set; }
+    [Required]
+    [Phone]
+    [JsonPropertyName("phone")]
+    public string Phone { get; set; }
 
-        public string Address { get; set; }
-    }
+    public int UserId { get; set; }
+
+    [JsonPropertyName("address")]
+    public string Address { get; set; }
+
+    
 }
+

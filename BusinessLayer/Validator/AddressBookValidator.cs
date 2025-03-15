@@ -19,8 +19,7 @@ namespace BusinessLayer.Validators
                 .NotEmpty().WithMessage("Phone number is required")
                 .Matches(@"^\d{10}$").WithMessage("Phone number must be 10 digits");
 
-            RuleFor(x => x.Address)
-                .NotEmpty().WithMessage("Address is required");
+            
         }
     }
 }

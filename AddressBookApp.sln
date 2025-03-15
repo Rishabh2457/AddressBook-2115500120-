@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35728.132 d17.12
+VisualStudioVersion = 17.12.35728.132
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBookApp", "AddressBookApp\AddressBookApp.csproj", "{BD1424EC-5DF3-4050-9619-34AA06EF3646}"
 EndProject
@@ -10,6 +10,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryLayer", "RepositoryLayer\RepositoryLayer.csproj", "{9CBD3B06-78E3-4799-B70E-B9D187B01ED6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelLayer", "ModelLayer\ModelLayer.csproj", "{D2D48CF7-0D1E-4925-9C28-A6C62AA95FA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQConsumer", "RabbitMQConsumer\RabbitMQConsumer.csproj", "{0029181A-503E-4B68-8937-E1F4023AD7D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBookApp.Tests", "AddressBookApp.Tests\AddressBookApp.Tests.csproj", "{BFFE165F-6503-4439-9AD3-0602F88F70F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{D2D48CF7-0D1E-4925-9C28-A6C62AA95FA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2D48CF7-0D1E-4925-9C28-A6C62AA95FA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2D48CF7-0D1E-4925-9C28-A6C62AA95FA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0029181A-503E-4B68-8937-E1F4023AD7D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0029181A-503E-4B68-8937-E1F4023AD7D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0029181A-503E-4B68-8937-E1F4023AD7D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0029181A-503E-4B68-8937-E1F4023AD7D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFFE165F-6503-4439-9AD3-0602F88F70F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFFE165F-6503-4439-9AD3-0602F88F70F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFFE165F-6503-4439-9AD3-0602F88F70F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFFE165F-6503-4439-9AD3-0602F88F70F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

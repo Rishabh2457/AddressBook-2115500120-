@@ -10,8 +10,7 @@ namespace RepositoryLayer.Interface
         //string GenerateJwtToken(User user);
         bool ResetPassword(string token, string newPassword);
         bool ForgetPassword(string email);
-
-        List<User> GetAllUsers();
+        List<User> GetAll();
 
     }
 }

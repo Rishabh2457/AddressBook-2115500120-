@@ -4,6 +4,7 @@ using BusinessLayer.Interface;
 using ModelLayer.Model;
 using ModelLayer.DTO;
 using System;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace AddressBook.Controllers
@@ -18,8 +19,9 @@ namespace AddressBook.Controllers
             _userBL = userRL;
         }
 
+
         [HttpPost("register")]
-        public IActionResult Register([FromBody] RegisterDTO registerDTO)
+        public IActionResult Register(RegisterDTO registerDTO)
         {
             var user = _userBL.RegisterUser(registerDTO);
             if (user == null)
@@ -28,9 +30,8 @@ namespace AddressBook.Controllers
             }
             return Ok("User Registered Successfully");
         }
-
         [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginDTO login)
+        public IActionResult Login(LoginDTO login)
         {
             var user = _userBL.LoginUser(login);
             if (user == null)
@@ -39,13 +40,12 @@ namespace AddressBook.Controllers
             }
             return Ok(user);
         }
-
         [Authorize(Roles = "Admin")]
         [HttpGet("all-user")]
         public IActionResult GetAllUsers()
         {
-            // Get the user's role from the JWT token
-            var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+            // Check if the authenticated user has the "Admin" role
+            var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
 
             if (userRole != "Admin")
             {
@@ -67,7 +67,6 @@ namespace AddressBook.Controllers
             }
             return NotFound("Email Not Found");
         }
-
         [HttpPost("reset-password")]
         public IActionResult ResetPassword([FromBody] ResetPasswordDTO resetPassword)
         {
@@ -78,5 +77,8 @@ namespace AddressBook.Controllers
             }
             return NotFound("Invalid or Expired token");
         }
+
+
+
     }
 }

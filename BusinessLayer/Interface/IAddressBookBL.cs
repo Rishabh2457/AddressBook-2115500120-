@@ -1,15 +1,14 @@
-﻿using ModelLayer;
+﻿using System;
 using ModelLayer.DTO;
-using System.Collections.Generic;
 
 namespace BusinessLayer.Interface
 {
     public interface IAddressBookBL
     {
-        List<AddressBook> GetAllContacts();
-        AddressBook GetContactById(int id);
-        AddressBook AddContact(AddressBookDTO contact);
-        AddressBook UpdateContact(int id, AddressBookDTO contact);
-        bool DeleteContact(int id);
+        Task<List<AddressBookDTO>> GetAllContacts();
+        Task<AddressBookDTO?> GetContactById(int id);
+        Task<bool> AddContact(AddressBookDTO contact);
+        Task<bool> Update(int id, AddressBookDTO contact);
+        Task<bool> DeleteContact(int id);
     }
 }
