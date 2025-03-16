@@ -85,11 +85,11 @@ namespace BusinessLayer.Service
                     await _cache.StringSetAsync(cacheKey, serializedContact, _cacheDuration);
                 }
 
-                // Get all contacts, ensuring it's not null
+                // Ensure GetAll() returns a valid list
                 var contacts = _addressBookRL.GetAll() ?? new List<AddressBook>();
-                var mappedContacts = _mapper.Map<List<AddressBookDTO>>(contacts);
+                var mappedContacts = _mapper.Map<List<AddressBookDTO>>(contacts) ?? new List<AddressBookDTO>(); // ✅ Fix
 
-                if (mappedContacts != null && mappedContacts.Any()) // Ensure contact list is updated
+                if (mappedContacts.Any()) // Now this won't throw NullReferenceException
                 {
                     string listCacheKey = "contact_list";
                     var serializedContacts = JsonSerializer.Serialize(mappedContacts);
@@ -99,6 +99,7 @@ namespace BusinessLayer.Service
 
             return response;
         }
+
 
 
 

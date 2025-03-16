@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelLayer", "ModelLayer\Mo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQConsumer", "RabbitMQConsumer\RabbitMQConsumer.csproj", "{0029181A-503E-4B68-8937-E1F4023AD7D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBookApp.Tests", "AddressBookApp.Tests\AddressBookApp.Tests.csproj", "{BFFE165F-6503-4439-9AD3-0602F88F70F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBookApp.Test", "AddressBookTest\AddressBookApp.Test.csproj", "{7455F781-7920-41A2-96D0-ED504F104BC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{0029181A-503E-4B68-8937-E1F4023AD7D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0029181A-503E-4B68-8937-E1F4023AD7D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0029181A-503E-4B68-8937-E1F4023AD7D3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BFFE165F-6503-4439-9AD3-0602F88F70F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFFE165F-6503-4439-9AD3-0602F88F70F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFFE165F-6503-4439-9AD3-0602F88F70F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFFE165F-6503-4439-9AD3-0602F88F70F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7455F781-7920-41A2-96D0-ED504F104BC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7455F781-7920-41A2-96D0-ED504F104BC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7455F781-7920-41A2-96D0-ED504F104BC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7455F781-7920-41A2-96D0-ED504F104BC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

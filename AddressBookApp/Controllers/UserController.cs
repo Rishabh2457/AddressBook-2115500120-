@@ -7,7 +7,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
-namespace AddressBook.Controllers
+namespace AddressBookApp.Controllers
 {
     [Route("api/auth")]
     [ApiController]
